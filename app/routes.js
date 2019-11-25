@@ -52,13 +52,13 @@ var storage = multer.diskStorage({
       cb(null, 'public/images/uploads')
     },
     filename: (req, file, cb) => {
-      cb(null, file.fieldname + ".png")
+      cb(null, file.originalname)
     }
 });
+
 var upload = multer({storage: storage});
 
 app.post('/uploadImage', upload.single('patientPhotos'), (req, res, next) => {
-  // console.log(req)
     insertDocuments(db, req, 'images/uploads/' + req.file.originalname, () => {
       res.redirect(req.get('referer'));
         // res.redirect('/patient?name=<%=patientList[i].name')
@@ -66,6 +66,7 @@ app.post('/uploadImage', upload.single('patientPhotos'), (req, res, next) => {
 });
 
 var insertDocuments = function(db, req, filePath, callback) {
+   console.log("saving image as:", filePath);
     var collection = db.collection('patients');
       console.log('what im looking for:' , req.body.name)
       console.log('Here:',filePath)

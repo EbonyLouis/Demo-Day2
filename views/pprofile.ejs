@@ -55,7 +55,7 @@
 
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 <ul class="nav navbar-nav navbar-right">
-<li><a href="/login.ejs">Logout</a></li>
+<li><a href="/login">Logout</a></li>
 <!-- <li><a href="#skill">Skill</a></li>
 <li><a href="#education">Education</a></li>
 <li><a href="#service">SERVICES</a></li>
@@ -77,17 +77,19 @@
 
 
 <div class="person_img">
-<img src="images/test5.jpg" alt=""><%= patient.image %>
+<img src='<%= patient.image %>'>
 
+<% if(!patient.image){%>
 
 <form action="/uploadImage" enctype="multipart/form-data" method="post">
    <input type="file" name="patientPhotos">
+   <input type="hidden" name="name" value="<%=patient.name%>">
    <input type="submit" value="Upload">
  </form>
 
 <a class="download_btn" href="#"><span>Upload Image</span></a>
+<% } %>
 </div>
-
 </div>
 <div class="col-md-7">
 <div class="row person_details">
