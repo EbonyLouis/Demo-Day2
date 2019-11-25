@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+
+
+
+
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto">
+
+              <div class="bg-white p-5 rounded shadow">
+                <section class="greeting">
+                <h1 class="greetingWords">Good
+                  <span
+                     class="txt-rotate"
+                     data-period="2000"
+                     data-rotate='[ "Morning", "Afternoon", "Evening"]'></span>
+                </h1>
+              </section>
+
+
+
+
+                <!-- Underlined search bars with buttons -->
+                <form action="/patientSearch" method="post">
+                  <div class="row mb-4">
+                    <div class="form-group col-md-9">
+                      <input id="exampleFormControlInput5" type="text" name="keyword" placeholder="patient's name..." class="form-control form-control-underlined">
+                    </div>
+                    <div class="form-group col-md-3">
+
+                    </div>
+                  </div>
+
+                </form>
+                <!-- End -->
+
+              </div>
+            </div>
+          </div>
+
+
+<% if(patientList){%>
+  
+<section class="searchResults">
+<h2>Patients:</h2>
+
+<ul class="table">
+  <% for(var i=0; i< patientList.length; i++) {%>
+  <a href="/patient?name=<%=patientList[i].name %>">
+    <li class="patientList">
+      <span><%= patientList[i].name %></span>
+      <span><%= patientList[i].DOB %></span>
+      <span><%= patientList[i].parentname %></span>
+      <span><%= patientList[i].number %></span>
+    </li>
+  </a>
+  <% } %>
+</ul>
+<% } %>
+</section>
+
+<script src="js/search.js"></script>
+  </body>
+</html>

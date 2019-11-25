@@ -1,0 +1,23 @@
+#addNotesButton{
+  border-radius: 10px;
+}
+#addNotesButton:hover{
+  color: rgb(253, 197, 48);
+  transition: all 0.3s ease;
+}
+.education_area .education_inner_area .education_item:before{
+  background-color: dimgray;
+}
+body.light_bg{
+      background-color: rgb(239,239,239);
+
+}
+.education_area .education_inner_area .education_item:before {
+  content: none;
+}
+.about_person_area .person_img img{
+box-shadow: 8px 8px 10px #aaa;
+}
+#privateNoteStyle{
+  text-align: right !important;
+}

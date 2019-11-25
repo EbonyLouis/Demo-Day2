@@ -1,0 +1,67 @@
+input[type=text] {
+  height:17px;
+  border: 0;
+  width: calc(100% - 2px);
+  margin-left:1px;
+  box-shadow: -8px 10px 0px -7px #ebebeb, 8px 10px 0px -7px #ebebeb;
+  -webkit-transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s;
+  margin-top: 200px;
+  margin-left: 357px;
+  background-color: rgb(239,239,239);
+  font-size: 30px;
+  height: 37px;
+}
+input[type=text]:focus {
+  outline: none;
+  box-shadow: -8px 10px 0px -7px #fec608, 8px 10px 0px -7px #fec608;
+}
+html{
+  /* font-family: 'Poppins', sans-serif; */
+  padding: 1em 2em;
+  font-size: 18px;
+}
+body{
+  font-family: 'Poppins', sans-serif !important;
+}
+
+h1{
+  font-weight: 200;
+  margin: 0.4em 0;
+}
+h1 { font-size: 3.5em; }
+
+.greeting{
+  text-align: center;
+  margin: auto;
+  display: block;
+  margin-top: 63px;
+  margin-left: 327px;
+}
+.greetingWords{
+    font-size: 72px;
+    color: #fec608;
+}
+li{
+  list-style: none;
+  font-size: 20px;
+}
+a{
+  color: black !important
+}
+a:hover{
+  color: #fec608 !important;
+}
+body{
+  background-color: rgb(239,239,239) !important
+}
+.searchResults{
+    border: 2px solid transparent;
+    text-align: center;
+    display: block;
+    margin: auto;
+
+}
+.patientList{
+  border: 2px solid transparent;
+}
