@@ -59,6 +59,7 @@ var storage = multer.diskStorage({
 var upload = multer({storage: storage});
 
 app.post('/uploadImage', upload.single('patientPhotos'), (req, res, next) => {
+  console.log(res)
     insertDocuments(db, req, 'images/uploads/' + req.file.originalname, () => {
       res.redirect(req.get('referer'));
         // res.redirect('/patient?name=<%=patientList[i].name')
@@ -66,10 +67,10 @@ app.post('/uploadImage', upload.single('patientPhotos'), (req, res, next) => {
 });
 
 var insertDocuments = function(db, req, filePath, callback) {
-   console.log("saving image as:", filePath);
+   // console.log("saving image as:", filePath);
     var collection = db.collection('patients');
-      console.log('what im looking for:' , req.body.name)
-      console.log('Here:',filePath)
+      // console.log('what im looking for:' , req.body.name)
+      // console.log('Here:',filePath)
     collection.findOneAndUpdate({name: req.body.name}, {
 
       $set: {
@@ -82,6 +83,58 @@ var insertDocuments = function(db, req, filePath, callback) {
       if (err) return res.send(err)
       callback(result)
     })
+}
+
+// updating private notes
+
+app.post('/updateNotes',(req, res, next) =>{
+  updateNotesInDatabase(db, req, ()=>{
+    res.redirect(req.get('referer'));
+  });
+});
+
+var updateNotesInDatabase = function (db, req, callback){
+  var collection = db.collection('patients');
+  console.log('this should be the note',req.body.privateNotes)
+  collection.findOneAndUpdate({name: req.body.name}, {
+
+    $push: {
+      privateNotes: req.body.privateNotes
+    }
+  }, {
+    sort: {_id: -1},
+    upsert: false
+  }, (err, result) => {
+    if (err) return res.send(err)
+    callback(result)
+  })
+
+}
+
+// updating public notes
+
+app.post('/updateNotes2',(req, res, next) =>{
+  updateNotesInDatabase(db, req, ()=>{
+    res.redirect(req.get('referer'));
+  });
+});
+
+var updateNotesInDatabase = function (db, req, callback){
+  var collection = db.collection('patients');
+  console.log('this should be the note',req.body.privateNotes)
+  collection.findOneAndUpdate({name: req.body.name}, {
+
+    $push: {
+      publicNotes: req.body.publicNotes
+    }
+  }, {
+    sort: {_id: -1},
+    upsert: false
+  }, (err, result) => {
+    if (err) return res.send(err)
+    callback(result)
+  })
+
 }
 
 

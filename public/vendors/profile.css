@@ -1,9 +1,10 @@
-#addNotesButton{
-  border-radius: 10px;
+#notesStyling{
+  text-align: center;
 }
 #addNotesButton:hover{
   color: rgb(253, 197, 48);
   transition: all 0.3s ease;
+
 }
 .education_area .education_inner_area .education_item:before{
   background-color: dimgray;
@@ -20,4 +21,9 @@ box-shadow: 8px 8px 10px #aaa;
 }
 #privateNoteStyle{
   text-align: right !important;
+  text-align: center;
+}
+.bold{
+  font-weight: bold;
+  border-bottom: 2px black solid
 }
