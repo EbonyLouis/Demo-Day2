@@ -155,13 +155,16 @@
 
 <!-- the add button for publicNotes is below -->
 <h4 id="notesStyling"><a href="" class="nav-link" data-toggle="modal" data-target="#modalRequest"> <span id="addNotesButton"> <i class="far fa-edit"></i> </span> </a> Public Notes:</h4>
-<p>The notes written here, are open to the public, no matter who log's in they will be able to view this information.</p>
+
 </div>
 
 
 <ul>
   <% for(var i=0; i< patient.publicNotes.length; i++) {%>
-  <li  class="bold" contenteditable="true"><%= patient.publicNotes[i] %></li>
+  <li><%= patient.publicNotes[i].date %>
+    <%= patient.publicNotes[i].time %>
+  <div contenteditable="true"><%= patient.publicNotes[i].note %></div>
+</li>
   <% } %>
 </ul>
 </div>
@@ -173,10 +176,21 @@
 
 <h4 id="notesStyling"><a href="" class="nav-link" data-toggle="modal" data-target="#modalRequest"> <span id="addNotesButton"> <i class="far fa-edit"></i> </span> </a> Private Notes:</h4>
 
-
+<!-- line 180-193 is whats is helping me filter out notes based on the current use that is logged in at the given moment and to compare you need toalways look up how to compare objects -->
 <ul>
-  <% for(var i=0; i< patient.privateNotes.length; i++) {%>
-  <li  class="bold" contenteditable="true"><%= patient.privateNotes[i] %></li>
+
+  <% const notes = patient.privateNotes.filter(note => note.user.equals(uId))
+
+  console.log('this is notes after filter',notes,'this is user id',uId,'this is all patient notes b4 filter',patient.privateNotes)
+
+
+  for(var i=0; i< notes.length; i++) {%>
+
+
+  <li><%= notes[i].date %>
+    <%= notes[i].time %>
+  <div contenteditable="true"><%= notes[i].note %></div>
+</li>
   <% } %>
 </ul>
 </div>
@@ -235,28 +249,29 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="/updateNotes" method="post">
+        <form action="/updateNotes" autocomplete="off" method="post">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <!-- <label for="appointment_date" class="text-black">Date</label> -->
-                <input name="privateNotes" type="text" class="form-control appointment_date" placeholder="Date">
+                <input name="date" type="text" class="form-control appointment_date" placeholder="Date">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <!-- <label for="appointment_time" class="text-black">Time</label> -->
-                <input name="privateNotes" type="text" class="form-control appointment_time" placeholder="Time">
+                <input name="time" type="text" class="form-control appointment_time" placeholder="Time">
               </div>
             </div>
           </div>
           <div class="form-group">
             <!-- <label for="appointment_message" class="text-black">Message</label> -->
-            <textarea name="privateNotes" id="appointment_message" class="form-control" cols="30" rows="10" placeholder="Notes"></textarea>
+            <textarea name="notes" id="appointment_message" class="form-control" cols="30" rows="10" placeholder="Notes"></textarea>
           </div>
           <div class="form-group">
             <input class="sendNote" type="submit" value="" class="btn btn-primary">
             <input type="hidden" name="name" value="<%=patient.name%>">
+            <input type="hidden" name="patientId" value="<%=patient._id%>">
           </div>
         </form>
       </div>
@@ -265,9 +280,9 @@
   </div>
 </div>
 
-<!-- public notes modal -->
+<!-- public notes modal --->
 
-<div class="modal fade" id="modalRequest" tabindex="-1" role="dialog" aria-labelledby="modalRequestLabel" aria-hidden="true">
+ <div class="modal fade" id="modalRequest" tabindex="-1" role="dialog" aria-labelledby="modalRequestLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -277,35 +292,35 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="/updateNotes2" method="post">
+        <form action="/updateNotes2" autocomplete="off" method="post">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <!-- <label for="appointment_date" class="text-black">Date</label> -->
-                <input name="publicNotes" type="text" class="form-control appointment_date" placeholder="Date">
+                 <input name="date" type="text" class="form-control appointment_date" placeholder="Date">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <!-- <label for="appointment_time" class="text-black">Time</label> -->
-                <input name="publicNotes" type="text" class="form-control appointment_time" placeholder="Time">
+              <input name="time" type="text" class="form-control appointment_time" placeholder="Time">
               </div>
             </div>
           </div>
           <div class="form-group">
             <!-- <label for="appointment_message" class="text-black">Message</label> -->
-            <textarea name="publicNotes" id="appointment_message" class="form-control" cols="30" rows="10" placeholder="Notes"></textarea>
+          <textarea name="notes" id="appointment_message" class="form-control" cols="30" rows="10" placeholder="Notes"></textarea>
           </div>
           <div class="form-group">
             <input class="sendNote" type="submit" value="" class="btn btn-primary">
-            <input type="hidden" name="name" value="<%=patient.name%>">
+            <input type="hidden" name="patientId" value="<%=patient._id%>">
           </div>
         </form>
       </div>
 
     </div>
   </div>
-</div>
+</div> -->
 
 
 
