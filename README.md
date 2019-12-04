@@ -10,8 +10,8 @@
     5. log in, signup, and logout
     6. add new patients to the database
     7. progress page to view each patients progress (chart)
+    8. add a parents only login page (guardian, etc, that will only display their children information)
   ## Coming Soon:
     1. send messages to other therapist within the community  
-    2. send quick progress reports to enrolled parents(via text)
-    3. add a parents only login page (guardian, etc, that will only display their children information)
-    4. More cohesive styling !
+    2. send daily appointment reminder text to doctors
+    3. More cohesive styling !
