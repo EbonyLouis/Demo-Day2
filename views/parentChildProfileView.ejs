@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="img/fav-icon.png" type="image/x-icon" />
 
-
 <!--Load the AJAX API-->
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
    <script type="text/javascript">
@@ -46,6 +45,9 @@
        chart.draw(data, options);
      }
    </script>
+
+
+
 
 
 
@@ -118,14 +120,14 @@
 
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 <ul class="nav navbar-nav navbar-right">
-<li><a href="/patientSearch">Back to Search</a></li>
+<!-- <li><a href="/patientSearch">Back to Search</a></li> -->
 <li><a href="/login">Logout</a></li>
 <!--
 <li><a href="#education">Education</a></li>
 <li><a href="#service">SERVICES</a></li>
 <li><a href="#portfolio">PORTFOLIO</a></li> -->
-<li><a href="#news">Progress</a></li>
-<li><a href="#contact">Message</a></li>
+<!-- <li><a href="#news">Progress</a></li>
+<li><a href="#contact">Message</a></li> -->
 </ul>
 </div>
 </nav>
@@ -160,6 +162,7 @@
 
 
 <h3><%= patient.name %></h3>
+
 <h4>Diagnosis: <%= patient.diagnosis %></h4>
 
 <div class="person_information">
@@ -181,185 +184,45 @@
 <li><a href="#"></a><%= patient.email %></li>
 <li><a href="#"></a><%= patient.address %></li>
 </ul>
-<form class="" action="/addChildToParent" method="post">
-  <button type="submit" name="button">Add Parent</button>
-  <input type="text" name="email" value="" placeholder="add parent name">
-  <input type="hidden" name="patientId" value="<%=patient._id%>">
-</form>
-
-
 </div>
+
 </div>
 </div>
 </div>
 </section>
 <section class="myskill_area pad" id="skill">
 <div class="main_title">
-<h2>Appointment Notes</h2>
+<h2>Make an Appointment</h2>
 </div>
 <div class="row">
-<div class="col-md-6 wow fadeInUp animated">
-<div class="skill_text">
 
-
-<!-- the add button for publicNotes is below -->
-<h4 id="notesStyling"><a href="" class="nav-link" data-toggle="modal" data-target="#modalRequestPublic"> <span id="addNotesButton"> <i class="far fa-edit"></i> </span> </a> Public Notes:</h4>
-
-</div>
-
-
-<ul>
-  <% for(var i=0; i< patient.publicNotes.length; i++) {%>
-  <li><%= patient.publicNotes[i].date %>
-    <%= patient.publicNotes[i].time %>
-  <div contenteditable="true"><%= patient.publicNotes[i].note %><i class="fas fa-pencil-alt"></i></div>
-</li>
-  <% } %>
-</ul>
-</div>
 
 <!-- button for private notes below -->
 
 <div  class="col-md-6 wow fadeInUp animated">
 <div class="skill_text">
 
-<h4 id="notesStyling"><a href="" class="nav-link" data-toggle="modal" data-target="#modalRequest"> <span id="addNotesButton"> <i class="far fa-edit"></i> </span> </a> Private Notes:</h4>
-
-<!-- line 180-193 is whats is helping me filter out notes based on the current use that is logged in at the given moment and to compare you need toalways look up how to compare objects -->
-<ul>
-
-  <% const notes = patient.privateNotes.filter(note => note.user.equals(uId))
-
-  console.log('this is notes after filter',notes,'this is user id',uId,'this is all patient notes b4 filter',patient.privateNotes)
-
-
-  for(var i=0; i< notes.length; i++) {%>
-
-
-  <li><%= notes[i].date %>
-    <%= notes[i].time %>
-  <div contenteditable="true"><%= notes[i].note %><i class="fas fa-pencil-alt"></i></div>
-</li>
-  <% } %>
-</ul>
+<h4 id="notesStyling"><a href="" class="nav-link" data-toggle="modal" data-target="#modalRequest"> <span id="addNotesButton"> <i class="far fa-calendar-check"></i></span> </a> Upcoming Appointments:</h4>
 </div>
-
-</div>
-</div>
-</section>
-
-<section class="education_area pad" id="education">
-<div class="main_title">
-<h2>Plan Overview</h2>
-</div>
-<div class="education_inner_area">
-<div class="education_item wow fadeInUp animated" data-line="1">
-<h6>Month 1:</h6>
-<a href="#"><h4>Language intervention activities</h4></a>
-<h5>Pictures</h5>
-<p>Pictures, books, objects, or ongoing events to stimulate language development. The therapist may model correct vocabulary and grammar, and use repetition exercises to build language skills.</p>
-
-<form class="" action="month1Progress" method="post">
-  <select class="progressNumber" name="progress">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-  <button class="submit" type="submit" name="button">Submit</button>
-  <input type="hidden" name="patientId" value="<%=patient._id%>">
-</form>
-
-
-
-
-
-</div>
-<div class="education_item wow fadeInUp animated" data-line="2">
-<h6>Month 2:</h6>
-<a href="#"><h4>Language intervention activities</h4></a>
-<h5>books</h5>
-<p>Pictures, books, objects, or ongoing events to stimulate language development. The therapist may model correct vocabulary and grammar, and use repetition exercises to build language skills.</p>
-
-<form class="" action="month2Progress" method="post">
-  <select class="progressNumber" name="progress">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-  <button class="submit" type="submit" name="button">Submit</button>
-  <input type="hidden" name="patientId" value="<%=patient._id%>">
-</form>
-
 
 
 </div>
 
-<div class="education_item wow fadeInUp animated" data-line="3">
-<h6>Month 3:</h6>
-<a href="#"><h4>Language intervention activities</h4></a>
-<h5>Pictures</h5>
-<p>pictures, books, objects, or ongoing events to stimulate language development. The therapist may model correct vocabulary and grammar, and use repetition exercises to build language skills.</p>
+<div  class="col-md-6 wow fadeInUp animated">
+<div class="skill_text">
 
-<form class="" action="month3Progress" method="post">
-  <select class="progressNumber" name="progress">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-  <button class="submit" type="submit" name="button">Submit</button>
-  <input type="hidden" name="patientId" value="<%=patient._id%>">
-</form>
-
-
-</div>
-
-<div class="education_item wow fadeInUp animated" data-line="4">
-<h6>Month 4:</h6>
-<a href="#"><h4>Language intervention activities</h4></a>
-<h5>Books</h5>
-<p>pictures, books, objects, or ongoing events to stimulate language development. The therapist may model correct vocabulary and grammar, and use repetition exercises to build language skills.</p>
-
-<form class="" action="month4Progress" method="post">
-  <select class="progressNumber" name="progress">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-  <button class="submit" type="submit" name="button">Submit</button>
-  <input type="hidden" name="patientId" value="<%=patient._id%>">
-</form>
+<h4 id="notesStyling"><i class="fas fa-calendar-check"></i>Past Appointments:</h4>
 </div>
 
 
-<div class="education_item wow fadeInUp animated" data-line="5">
-<h6>Month 5:</h6>
-<a href="#"><h4>Language intervention activities</h4></a>
- <h5>Videos</h5>
-<p>pictures, books, objects, or ongoing events to stimulate language development. The therapist may model correct vocabulary and grammar, and use repetition exercises to build language skills.</p>
 
-<form class="" action="month5Progress" method="post">
-  <select class="progressNumber" name="progress">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-  <button class="submit" type="submit" name="button">Submit</button>
-  <input type="hidden" name="patientId" value="<%=patient._id%>">
-</form>
+
 
 </div>
 </div>
 </section>
+
+
 
 
 <!-- where I want the chart to be -->
@@ -371,7 +234,20 @@
   <div class="about_person_area pad" id="about" class="service_inner row" class="container">
     <div id="chart_div"></div>
   </div>
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </section>
 
 <!-- modal info -->
@@ -380,7 +256,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalRequestLabel">Private Notes</h5>
+        <h5 class="modal-title" id="modalRequestLabel">Schedule Appointment</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -403,7 +279,7 @@
           </div>
           <div class="form-group">
             <!-- <label for="appointment_message" class="text-black">Message</label> -->
-            <textarea name="notes" id="appointment_message" class="form-control" cols="30" rows="10" placeholder="Notes"></textarea>
+            <textarea name="notes" id="appointment_message" class="form-control" cols="30" rows="10" placeholder="Notes for the doctor?"></textarea>
           </div>
           <div class="form-group">
             <input class="sendNote" type="submit" value="" class="btn btn-primary">
@@ -419,45 +295,6 @@
 
 <!-- public notes modal --->
 
- <div class="modal fade" id="modalRequestPublic" tabindex="-1" role="dialog" aria-labelledby="modalRequestLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalRequestLabel">Public Notes</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="/updateNotes2" autocomplete="off" method="post">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <!-- <label for="appointment_date" class="text-black">Date</label> -->
-                 <input name="date" type="text" class="form-control appointment_date" placeholder="Date">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <!-- <label for="appointment_time" class="text-black">Time</label> -->
-              <input name="time" type="text" class="form-control appointment_time" placeholder="Time">
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <!-- <label for="appointment_message" class="text-black">Message</label> -->
-          <textarea name="notes" id="appointment_message" class="form-control" cols="30" rows="10" placeholder="Notes"></textarea>
-          </div>
-          <div class="form-group">
-            <input class="sendNote" type="submit" value="" class="btn btn-primary">
-            <input type="hidden" name="patientId" value="<%=patient._id%>">
-          </div>
-        </form>
-      </div>
-
-    </div>
-  </div>
-</div>
 
 
 <script src="js/progress.js">

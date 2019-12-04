@@ -35,8 +35,10 @@ h1 { font-size: 3.5em; }
   text-align: center;
   margin: auto;
   display: block;
+
   margin-top: 63px;
-  margin-left: 327px;
+  margin-left: 282px;
+  width: 100%;
 }
 .greetingWords{
     font-size: 72px;
@@ -64,4 +66,12 @@ body{
 }
 .patientList{
   border: 2px solid transparent;
+}
+
+#time{
+font-size: 93px;
+color:  #fec608
+}
+#weekDay{
+  font-size: 60px;
 }
