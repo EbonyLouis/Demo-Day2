@@ -8,9 +8,10 @@
     3. add photos to that patient's profile
     4. add notes and mark them private or Public(can be seen by any user)
     5. log in, signup, and logout
+    6. add new patients to the database
+    7. progress page to view each patients progress (chart)
   ## Coming Soon:
-    1. add new patients to the database
-    3. send messages to other therapist within the community
-    4. progress page to view each patients progress (chart)
-    5. send quick progress reports to enrolled parents
-    6. More cohesive styling !
+    1. send messages to other therapist within the community  
+    2. send quick progress reports to enrolled parents(via text)
+    3. add a parents only login page (guardian, etc, that will only display their children information)
+    4. More cohesive styling !
