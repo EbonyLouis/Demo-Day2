@@ -11,6 +11,7 @@
     6. add new patients to the database
     7. progress page to view each patients progress (chart)
     8. add a parents only login page (guardian, etc, that will only display their children information)
+    9. being able to receieve a text message when they have been fully registered
   ## Coming Soon:
     1. send messages to other therapist within the community  
     2. send daily appointment reminder text to doctors
